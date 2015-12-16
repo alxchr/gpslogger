@@ -690,16 +690,16 @@ public class GpsMainActivity extends ActionBarActivity
             return;
         }
 
-        if (!Session.hasValidLocation()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.started_waiting), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         if (!Session.isStarted()) {
             Toast.makeText(getApplicationContext(), getString(R.string.not_started), Toast.LENGTH_SHORT).show();
             return;
         }
-        Session.setDescription(getString(R.string.wpt)+" "+String.valueOf(Session.getNumWpt()));
+
+        if (!Session.hasValidLocation()) {
+            Toast.makeText(getApplicationContext(), getString(R.string.started_waiting), Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        Session.setDescription(getString(R.string.wpt)+" "+String.valueOf(Session.getNumWpt()));
 
         MaterialDialog alertDialog = new MaterialDialog.Builder(GpsMainActivity.this)
                 .title(R.string.add_description)
@@ -716,8 +716,8 @@ public class GpsMainActivity extends ActionBarActivity
                 }).build();
 
         EditText userInput = (EditText) alertDialog.getCustomView().findViewById(R.id.alert_user_input);
-        userInput.setText(Session.getDescription());
-//        userInput.setText("123456");
+//        userInput.setText(Session.getDescription());
+        userInput.setText(getString(R.string.wpt)+" "+String.valueOf(Session.getNumWpt()));
         TextView tvMessage = (TextView)alertDialog.getCustomView().findViewById(R.id.alert_user_message);
         tvMessage.setText(R.string.letters_numbers);
         alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
