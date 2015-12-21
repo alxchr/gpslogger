@@ -699,7 +699,6 @@ public class GpsMainActivity extends ActionBarActivity
             Toast.makeText(getApplicationContext(), getString(R.string.started_waiting), Toast.LENGTH_SHORT).show();
             return;
         }
-//        Session.setDescription(getString(R.string.wpt)+" "+String.valueOf(Session.getNumWpt()));
 
         MaterialDialog alertDialog = new MaterialDialog.Builder(GpsMainActivity.this)
                 .title(R.string.add_description)
